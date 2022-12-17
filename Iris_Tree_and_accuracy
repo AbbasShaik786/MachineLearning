@@ -1,0 +1,45 @@
+from sklearn.model_selection import train_test_split
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import tree
+from sklearn.datasets import load_iris
+ir=load_iris()
+X,y=(ir.data,ir.target)
+X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=1,random_state=0)
+d=DecisionTreeClassifier()
+d.fit(X_train,y_train)
+print(tree.plot_tree(d))
+y_predict=d.predict(X_test)
+
+############################################
+
+import sklearn
+from sklearn import datasets
+iris = datasets.load_iris()
+
+X = iris.data
+y = iris.target
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(
+   X, y, test_size = 0.2, random_state = 1
+)
+
+print(X_train.shape)
+print(X_test.shape)
+
+print(y_train.shape)
+print(y_test.shape)
+
+from sklearn.ensemble import RandomForestClassifier
+clr = RandomForestClassifier(n_estimators = 100)
+clr.fit(X_train, y_train)
+y_pred = clr.predict(X_test)
+
+from sklearn import metrics
+print(''"Accuracy of our Random Forst Classifier is: ",
+metrics.accuracy_score(y_test, y_pred)*100)
+from sklearn.metrics import precision_score, recall_score, f1_score
+print('Precision: %.3f' % precision_score(y_test, y_pred,average = "macro"))
+print('Recall: %.3f' % recall_score(y_test, y_pred,average = "macro"))
+print('f1-score_Decision tree : %.3f' % f1_score(y_test,y_pred,average='macro'))
+
+clr.predict([[5, 4, 3, 1]])
